@@ -1,6 +1,11 @@
 <template>
   <div>
-    {{ message.message }}
+    <div v-if="errorMessage">
+      {{ errorMessage }}
+    </div>
+    <div v-else>
+      {{ message.message }}
+    </div>
   </div>
 </template>
 
@@ -10,7 +15,8 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      message: 'Hello, World!'
+      message: 'Hello, World!',
+      errorMessage: '' // ตัวแปรสำหรับเก็บข้อความข้อผิดพลาด
     }
   },
   mounted() {
@@ -21,6 +27,7 @@ export default {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        this.errorMessage = 'โหลดข้อมูลไม่สำเร็จ'; // ข้อความแสดงข้อผิดพลาด
       });
   }
 }

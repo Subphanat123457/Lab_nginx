@@ -11,7 +11,9 @@ services:
       - webnet
     depends_on:
       - frontend
-      - backend
+      - backend1
+      - backend2
+      - backend3
 
   frontend:
     build:
@@ -19,22 +21,48 @@ services:
       dockerfile: Dockerfile
     image: frontend:latest
     container_name: frontend
-    volumes:
-      - ./app/dist:/app
+    # volumes:
+    #   - ./app/dist:/app
     depends_on:
-      - backend
+      - backend1
+      - backend2
+      - backend3
     networks:
       - webnet
 
-  backend:
+  backend1:
     build:
-      context: ./backend
+      context: ./backend1
       dockerfile: Dockerfile
-    image: backend:latest
-    container_name: backend
+    image: backend1:latest
+    container_name: backend1
     restart: unless-stopped
     ports:
       - "3000:3000"
+    networks:
+      - webnet
+  
+  backend2:
+    build:
+      context: ./backend2
+      dockerfile: Dockerfile
+    image: backend2:latest
+    container_name: backend2
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    networks:
+      - webnet
+
+  backend3: 
+    build:
+      context: ./backend3
+      dockerfile: Dockerfile
+    image: backend3:latest
+    container_name: backend3
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
     networks:
       - webnet
 

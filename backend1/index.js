@@ -11,7 +11,13 @@ app.use(express.json());
 
 app.use('/api', router);
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the API 1' });
+  try {
+    res.status(200).json({ message: 'Welcome to the API 1' });
+  }
+  catch (error) {
+    console.error('Error occurred:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.listen(PORT, () => {
