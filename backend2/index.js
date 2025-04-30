@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use('/api', router);
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the API' });
+  res.status(200).json({ message: 'Welcome to the API 2' });
 });
 
 app.listen(PORT, () => {
