@@ -14,7 +14,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:3000')
+    axios.get('http://localhost/api')
       .then(response => {
         console.log(response.data);
         this.message = response.data;

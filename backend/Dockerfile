@@ -1,1 +1,13 @@
-FROM node:lastest
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm i
+
+COPY . .
+
+EXPOSE ${PORT}
+
+CMD ["npm", "start"]
